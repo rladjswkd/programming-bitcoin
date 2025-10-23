@@ -1,12 +1,22 @@
+#ifndef POINT_H
+#define POINT_H
+
 #include <stdlib.h>
+#include <optional>
+
+using Value = std::optional<int64_t>;
 
 class Point
 {
 public:
-	Point(int64_t x, int64_t y, int64_t a, int64_t b);
+	Point(Value x, Value y, int64_t a, int64_t b);
 	bool operator==(Point &other);
 	bool operator!=(Point &other);
+	Point operator+(Point &other); // Exercise 3
 
 private:
-	int64_t x, y, a, b;
+	Value x, y;
+	int64_t a, b;
 };
+
+#endif

@@ -4,19 +4,19 @@
 #include <stdlib.h>
 #include <optional>
 
-using Value = std::optional<int64_t>;
+using Value = std::optional<double>;
 
 class Point
 {
 public:
-	Point(Value x, Value y, int64_t a, int64_t b);
+	Point(Value x, Value y, double a, double b);
 	bool operator==(Point &other);
 	bool operator!=(Point &other);
-	Point operator+(Point &other); // Exercise 3
+	Point operator+(Point &other); // Exercise 3, 5, 7
 
 private:
 	Value x, y;
-	int64_t a, b;
+	double a, b;
 };
 
 #endif

@@ -15,17 +15,17 @@ std::string FieldElement::represent()
 	return "FieldElement_" + std::to_string(prime) + "(" + std::to_string(num) + ")";
 }
 
-bool FieldElement::operator==(FieldElement &other)
+bool FieldElement::operator==(const FieldElement &other)
 {
 	return (this->num == other.num) && (this->prime == other.prime);
 }
 
-bool FieldElement::operator!=(FieldElement &other)
+bool FieldElement::operator!=(const FieldElement &other)
 {
 	return !(*this == other);
 }
 
-FieldElement FieldElement::operator+(FieldElement &other)
+FieldElement FieldElement::operator+(const FieldElement &other)
 {
 	if (this->prime != other.prime)
 		throw std::invalid_argument("Cannot add two numbers in different Fields");
@@ -36,7 +36,7 @@ FieldElement FieldElement::operator+(FieldElement &other)
 	return FieldElement(res, this->prime);
 }
 
-FieldElement FieldElement::operator-(FieldElement &other)
+FieldElement FieldElement::operator-(const FieldElement &other)
 {
 	if (this->prime != other.prime)
 		throw std::invalid_argument("Cannot subtract two numbers in different Fields");
@@ -47,7 +47,7 @@ FieldElement FieldElement::operator-(FieldElement &other)
 	return FieldElement(res, this->prime);
 }
 
-FieldElement FieldElement::operator*(FieldElement &other)
+FieldElement FieldElement::operator*(const FieldElement &other)
 {
 	if (this->prime != other.prime)
 		throw std::invalid_argument("Cannot multiply two numbers in different Fields");
@@ -58,7 +58,7 @@ FieldElement FieldElement::operator*(FieldElement &other)
 	return FieldElement(res, this->prime);
 }
 
-FieldElement FieldElement::pow(int64_t exp)
+FieldElement FieldElement::pow(int64_t exp) const
 {
 	auto n = exp % (this->prime - 1);
 	if (n < 0)
@@ -69,7 +69,7 @@ FieldElement FieldElement::pow(int64_t exp)
 	return FieldElement(res, this->prime);
 }
 
-FieldElement FieldElement::operator/(FieldElement &other)
+FieldElement FieldElement::operator/(const FieldElement &other)
 {
 	auto fe = other.pow(other.prime - 2);
 	return (this->operator*(fe));
